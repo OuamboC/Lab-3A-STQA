@@ -14,16 +14,14 @@ class BMICalculatorTest {
         bmiCalculator = new BMICalculator();
 
     }
-    @DisplayName("TC02: Weight (kg) – 50 \n" +
-            "\n" +
-            "Height (meters) – 2 ")
+    @DisplayName("BMI 50kg 2m = 12.5")
     @Test
-    void testCalculateBMI_WhenFiftyKgAndTwoMeter_ShouldReturnTwentyFive() {
+    void testCalculateBMI_WhenFiftyKgAndTwoMeter_ShouldReturnTwelvePointFive() {
         double result = bmiCalculator.calculateBMI(50, 2);
         assertEquals(12.50,result);
     }
 
-    @DisplayName("TC03: Weight is zero, expect IllegalArgumentException")
+    @DisplayName("BMI 0kg 2m , expect IllegalArgumentException")
     @Test
     void testCalculateBMI_WhenZeroKgAndTwoMeter_ShouldThrowNewIllegalArgumentException() {
         double weightInKg = 0;
@@ -38,7 +36,7 @@ class BMICalculatorTest {
 
     }
 
-    @DisplayName("TC04: Height is zero , expect IllegalArgumentException")
+    @DisplayName("BMI 2kg 0m  , expect IllegalArgumentException")
     @Test
     void testCalculateBMI_WhenTwoKgAndZeroMeter_ShouldThrowNewIllegalArgumentException() {
         double weightInKg = 2;
@@ -53,7 +51,7 @@ class BMICalculatorTest {
 
     }
 
-    @DisplayName("TC05: Negative Weight  , expect IllegalArgumentException")
+    @DisplayName("BMI -20kg 2m , expect IllegalArgumentException")
     @Test
     void testCalculateBMI_WhenNegativeWeight_ShouldThrowNewIllegalArgumentException() {
         double weightInKg = -20;
@@ -68,7 +66,7 @@ class BMICalculatorTest {
 
     }
 
-    @DisplayName("TC06: Negative height  , expect IllegalArgumentException")
+    @DisplayName("BMI 2kg -20m, expect IllegalArgumentException")
     @Test
     void testCalculateBMI_WhenNegativeHeight_ShouldThrowNewIllegalArgumentException() {
         double weightInKg = 2;
@@ -83,7 +81,7 @@ class BMICalculatorTest {
 
     }
 
-    @DisplayName("TC07: BMI < 18.5  , expect  “Underweight”  ")
+    @DisplayName("BMI=16 , expect  “Underweight”  ")
     @Test
     void testClassifyBMI_WhenBMILessThanEighteenDotFive_ShouldReturnUnderweight() {
        String  bmi = bmiCalculator.classifyBMI(16);
@@ -91,7 +89,7 @@ class BMICalculatorTest {
         assertEquals(expectedMessage, bmi);
     }
 
-    @DisplayName("TC08: 18.5 <= BMI < 24.9   , expect  “Normal weight”   ")
+    @DisplayName("BMI=18.5   , expect  “Normal weight”   ")
     @Test
     void testClassifyBMI_WhenBMIBetweenEighteenDotFiveAndTwentyFourDotNine_ShouldReturnNormalWeight() {
         String  bmi = bmiCalculator.classifyBMI(18.5);
@@ -99,7 +97,7 @@ class BMICalculatorTest {
         assertEquals(expectedMessage, bmi);
     }
 
-    @DisplayName("TC09: 24.9 <= BMI < 30   , expect  “Overweight”    ")
+    @DisplayName("BMI=24.9  , expect  “Overweight”    ")
     @Test
     void testClassifyBMI_WhenBMIBetweenTwentyFourDotNineAndThirty_ShouldReturnOverweight() {
         String  bmi = bmiCalculator.classifyBMI(24.9);
@@ -107,7 +105,7 @@ class BMICalculatorTest {
         assertEquals(expectedMessage, bmi);
     }
 
-    @DisplayName("TC10: BMI >= 30   , expect  “Obese”   ")
+    @DisplayName("BMI=60 , expect  “Obese”   ")
     @Test
     void testClassifyBMI_WhenBMIGreaterThanThirty_ShouldReturnObese() {
         String  bmi = bmiCalculator.classifyBMI(60);
@@ -115,7 +113,7 @@ class BMICalculatorTest {
         assertEquals(expectedMessage, bmi);
     }
 
-    @DisplayName("TC11: 18.5 <= BMI < 24.9   , expect  “Normal weight”  ")
+    @DisplayName("BMI = 17.9, 18.5,24,24.8  , expect  “Normal weight”  ")
     @ParameterizedTest(name = "BMI = {0} , Expected = {1}")
     @CsvSource({
             "17.9, Underweight",
@@ -123,12 +121,12 @@ class BMICalculatorTest {
             "24, Normal weight",
             "24.8, Normal weight"
     })
-    void testTC11ClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
+    void testClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
         // The 'bmi' and 'expectedClassification' values are passed automatically from the @CsvSource data
         assertEquals(expectedClassification, bmiCalculator.classifyBMI(bmi));
     }
 
-    @DisplayName("TC12 24.9 <= BMI < 30   , expect  “Overweight”   ")
+    @DisplayName("BMI = 24.9, 24.89,29.9  , expect  “Overweight”   ")
     @ParameterizedTest(name = "BMI = {0} , Expected = {1}")
     @CsvSource({
             "24.9, Overweight",
@@ -136,12 +134,12 @@ class BMICalculatorTest {
             "29.9, Overweight",
 
     })
-    void testTC12ClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
+    void testClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
         // The 'bmi' and 'expectedClassification' values are passed automatically from the @CsvSource data
         assertEquals(expectedClassification, bmiCalculator.classifyBMI(bmi));
     }
 
-    @DisplayName("TC13 BMI >= 30    , expect  “Obese”    ")
+    @DisplayName("BMI = 30, 40,100    , expect  “Obese”    ")
     @ParameterizedTest(name = "BMI = {0} , Expected = {1}")
     @CsvSource({
             "30, Obese",
@@ -149,7 +147,7 @@ class BMICalculatorTest {
             "100, Obese",
 
     })
-    void testTC13ClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
+    void testClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
         // The 'bmi' and 'expectedClassification' values are passed automatically from the @CsvSource data
         assertEquals(expectedClassification, bmiCalculator.classifyBMI(bmi));
     }
