@@ -28,9 +28,10 @@ Welcome to the BMICalculator & Calculator project! This project consists of two 
 ## Installation
 1. **Clone the repository:**
     ```sh
-    git clone https://github.com/yourusername/bmi-calculator.git
-    cd bmi-calculator
+    git clone https://github.com/yourusername/Lab-3A-STQA.git
+    cd Lab-3A-STQA
     ```
+
 
 2. **Compile the project:**
     ```sh
