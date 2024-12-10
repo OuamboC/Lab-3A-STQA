@@ -121,7 +121,7 @@ class BMICalculatorTest {
             "24, Normal weight",
             "24.8, Normal weight"
     })
-    void testClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
+    void testClassifyBMI_WithNWBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
         // The 'bmi' and 'expectedClassification' values are passed automatically from the @CsvSource data
         assertEquals(expectedClassification, bmiCalculator.classifyBMI(bmi));
     }
@@ -134,7 +134,7 @@ class BMICalculatorTest {
             "29.9, Overweight",
 
     })
-    void testClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
+    void testClassifyBMI_WithOwBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
         // The 'bmi' and 'expectedClassification' values are passed automatically from the @CsvSource data
         assertEquals(expectedClassification, bmiCalculator.classifyBMI(bmi));
     }
@@ -147,7 +147,7 @@ class BMICalculatorTest {
             "100, Obese",
 
     })
-    void testClassifyBMI_WithBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
+    void testClassifyBMI_WithObBoundaryValues_ShouldReturnExpectedClassification(double bmi, String expectedClassification) {
         // The 'bmi' and 'expectedClassification' values are passed automatically from the @CsvSource data
         assertEquals(expectedClassification, bmiCalculator.classifyBMI(bmi));
     }
